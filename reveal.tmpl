@@ -1,0 +1,80 @@
+## -*- coding: utf-8 -*-
+<%namespace name="zzz" file="zzz_helper.tmpl" import="*" />
+${set_locale(lang)}
+${zzz.html_headstart()}
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reset.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.min.css">
+        <link rel="stylesheet" href="/assets/css/slides.css">
+        
+        <script src="/assets/js/matrixrain.js"></script>
+        
+        <script>
+            window.onload = function() {
+                const c_width = 900;
+                const c_height = 500;
+                const matrixRain = new MatrixRain(
+                    element = document.getElementById("canvas"),
+                    width = c_width,
+                    height = c_height,
+                    charList = [
+                        '0','1','2','3','4','5','6','7','8','9',
+                        'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                        '+','-','*','=','<','>',':','.',
+                        'ï¾Š','ï¾','ï¾‹','ï½°','ï½³','ï½¼','ï¾…','ï¾“','ï¾†','ï½»','ï¾œ','ï¾‚','ï½µ','ï¾˜','ï½±','ï¾Ž','ï¾ƒ','ï¾','ï½¹','ï¾’','ï½´','ï½¶','ï½·','ï¾‘','ï¾•','ï¾—','ï½¾','ï¾ˆ','ï½½','ï¾€','ï¾‡','ï¾'
+                    ],
+                    red = 0, green = 255, blue = 0,
+                    randomColors = false,
+                    flowRate = 1,
+                    fps = 15,
+                );
+                window.addEventListener("resize", () => {
+                    matrixRain.setCanvasDimensions(c_width, c_height);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <a class="back_button" href="#" onclick="history.back()"></a>
+    
+        <div class="reveal">
+            <div class="slides">
+                 % if post.meta('is_html') and post.meta('is_html') == 'true':
+                 ${post.text()}
+                 % else:
+                 <section data-markdown>
+                    <textarea data-template>
+                        ${post.text()}
+                    </textarea>
+                </section>
+                 % endif
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/reveal.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/notes/notes.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/markdown/markdown.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/highlight/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/math/math.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.2/plugin/zoom/zoom.min.js"></script>
+        <script>
+        Reveal.initialize({
+            hash: true,
+            
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                config: 'TeX-AMS_HTML-full',
+            },
+            
+            markdown: {
+                smartypants: true
+            },
+            
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath, RevealZoom ]
+        });
+        </script>
+    </body>
+</html>
