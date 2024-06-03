@@ -81,7 +81,7 @@
 				</ul>	
 				
 				<aside class="notes">
-					breif outline...
+					brief outline...
 				</aside>
 		
 			</section>				
@@ -104,7 +104,7 @@
 					
 					<br>
 					
-					<p><strong>Example</strong> &nbsp; Axonal degeneration/demylination in Multiple Sclerosis 
+					<p><strong>Example</strong> &nbsp; Axonal degeneration/demyelination in Multiple Sclerosis 
 					(<a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/1531-8249(200003)47:3%3C391::AID-ANA20%3E3.0.CO;2-J?casa_token=-ndiI4wOyzUAAAAA:tsmXEhAcW1zZpihF4fJlpza3ptHf015m1c3TVMT-uC4A7KyFJG2YRYOndGKgD9U4LBfPE346cbaNzdr5Jw">Evangelou <em>et al.</em> <strong>2000</strong>)</a></p>
 
 					<br>	
@@ -119,7 +119,9 @@
 					</div>	
 					
 					<aside class="notes">
-					describe picture
+					<ul>
+						<li>(LHS ) dark tissue is myelin; (RHS) myelin degraded</li>
+					</ul>
 					</aside>
 		
 				</section>
@@ -151,7 +153,9 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Passingham et al. found that brain regions could be uniquely identified by their connections</li>
+					</ul>
 					</aside>
 				</section>													
 				
@@ -182,7 +186,11 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>gold standard tracer studies in mammals</li><br>
+						<li>MRI studies use the diffusive properties of water molecules in the brain to trace white matter connections</li><br>
+						<li>This enables the reconstruction of a network (or graph) approximating large-scale white matter configuration in the brain</li>
+					</ul>
 					</aside>
 					
 				</section>							
@@ -229,7 +237,11 @@
 					</div>	
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>BNMs focus on large-scale connectivity</li><br>
+						<li>Network nodes are brain regions and links denote white matter bundles</li><br>
+						<li>More recently meso-scale studies are becoming more common - MK recent high-resolution studies</li>
+					</ul>
 					</aside>
 				
 				</section>								
@@ -260,7 +272,13 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>BNMs consist of a network model of brain structure and simulated FC</li><br>
+						<li>Models increasingly take into account delays due to long-range information transfer </li><br>
+						<li>BNMs focus on neural mass models (i.e. regional population dynamics)</li><br>
+						<li>Popular examples: WC and JR as well as more recent next gen models</li><br>
+						<li>Further processed to more accurately reflect BOLD dynamics (Balloon-Windkessel - hemodynamics convolution)</li>
+					</ul>
 					</aside>
 					
 				</section>	
@@ -279,7 +297,10 @@
 					</div>  		
 
 					<aside class="notes">
-					...
+					<ul>
+						<li>The table provides details of a collection of recent studies using BNMs</li><br>
+						<li>...</li>
+					</ul>
 					</aside>
 					
 				</section>		
@@ -318,7 +339,13 @@
 					</span>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Our BNM consists of coupled Wilson-Cowan nodes</li><br>
+						<li>We consider two delays: intra- (within population) and inter-nodal (between populations - long distance) delays</li><br>
+						<li>Significantly simplified since we should really have n(n-1)/2 delays...</li><br>
+						<li>epsilon is the coupling strength</li><br>
+						<li>Comment on the row sum condition; binary, undirected adjacency matrix for simplicity</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -338,6 +365,12 @@
 						<li>$n=47$ brain regions (nodes) which are linked by $m=313$ undirected fibres (edges)</li><br>
 						<li>Binary connectivity matrix, <em>i.e.</em> $a_{ij} = a_{ji} = 1$ if brain region $i$ connects to brain region $j$</li>
 					</ul>
+					
+					<aside class="notes">
+					<ul>
+						<li>Current work is considering human BNMs</li>
+					</ul>
+					</aside>
 			
 				</section>	
 				
@@ -371,7 +404,12 @@
 					</div>			
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>We started by simulating the BNM for varying coupling and inter-nodal delay values</li><br>
+						<li>I will comment on the details of the simulation in slides to come</li><br>
+						<li>The R score provides a proxy of synchronisation (total): (standard deviation of mean signal)/(mean of the standard deviation of each signal)</li><br>
+						<li>How do these observed differences emerge as we change the parameters?</li>
+					</ul>
 					</aside>
 				
 				</section>		
@@ -428,7 +466,13 @@
 				</right-side>
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>Before moving on we consider some known results for the single node case</li><br>
+						<li>We choose parameter values such that a singlee node is oscillating as per Coombes' paper</li><br>
+						<li>As is common (not necessarily correct) we set alpha = 1 i.e. time scales equivalent</li><br>
+						<li>We will set tau1=tau2 in our work</li><br>
+						<li>a, b, c, d, P, Q, tau all held constant (oscillatory regime)</li>
+					</ul>
 				</aside>
 			 
 			</section>
@@ -455,7 +499,10 @@
 				</right-side>
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>firing rate function given by a sigmoid</li><br>
+						<li>beta = 60 unless otherwise stated</li>
+					</ul>
 				</aside>
 			</section>
 		
@@ -469,7 +516,10 @@
 				</div>				
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>well-studied no-delay case basically oscillates or goes to steady state</li><br>
+						<li>more intricate behaviour if we zoom in but broadly does one of two things</li>
+					</ul>
 				</aside>
 			</section>		
 		
@@ -497,7 +547,10 @@
 				</div>
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>More complicated behaviours emerge for non-zero delays</li><br>
+						<li>Following plot recreated from Coombes and Laing shows the maximal LE as a function of the parameters a, b, c and d</li>
+					</ul>
 				</aside>
 			</section>
 		
@@ -514,7 +567,10 @@
 				</div>
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>Both periodic and quasiperiodic motion observed</li>
+						<li>pants picture :)</li>
+					</ul>
 				</aside>
 			</section>		
 	
@@ -566,7 +622,18 @@
 					</p>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>We wish to study synchrony properties of our BNM</li><br>
+						<li>We use the fact the connectivity matrix W is row normalised to obtain the following equations governing synchronous solutions</li><br>
+						<li>Highlight how these equations differ to Coombes and Laing</li><br>
+						<li>Emphasise 
+							<ul>
+							<li>Not the same as the single (uncoupled) node dynamics</li><br>
+							<li>Depend on the two parameters epsilon and rho which is different to the commonly deployed case of diffusive coupling</li><br>
+							<li>The following linear stability analysis and computational bifurcation analysis is restricted to the synchronisation manifold (i.e. homogeneous perturbations)</li>
+							</ul>
+						</li>	
+					</ul>
 					</aside>
 				</section>	
 		
@@ -608,7 +675,11 @@
 					</span>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>We linearise about a fixed point which we denote by (u^*, v^*)</li><br>
+						<li>Here A, B and C are the Jacobians wrt to x, x(t-\tau) and x(t-\rho), respectively, evaluated at the fixed point</li><br>
+						<li>Using the usual exponential ansatz for linear equations we obtain the following equation that governs stability properties of the self-coupled system at the fixed point
+					</ul>
 					</aside>
 				</section>
 		
