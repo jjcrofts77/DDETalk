@@ -678,7 +678,7 @@
 					<ul>
 						<li>We linearise about a fixed point which we denote by (u^*, v^*)</li><br>
 						<li>Here A, B and C are the Jacobians wrt to x, x(t-\tau) and x(t-\rho), respectively, evaluated at the fixed point</li><br>
-						<li>Using the usual exponential ansatz for linear equations we obtain the following equation that governs stability properties of the self-coupled system at the fixed point
+						<li>Using the usual exponential ansatz for linear equations we obtain the following characteristic equation that governs stability properties of the self-coupled system at the fixed point
 					</ul>
 					</aside>
 				</section>
@@ -727,7 +727,11 @@
 					</span>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>To determine HB points we search for solutions with zero real part</li><br>		
+						<li>Upon equating imaginary and real parts we obtain the follwing conditions</li><br>
+						<li>Point out difference with Coombes...</li>
+					</ul>
 					</aside>
 				</section>
 		
@@ -768,7 +772,12 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>The equations displayed over slide require numerical methods to solve</li><br>
+						<li>We deploy DDEBiftool, a numerical bifurcation package for DDEs - similar to XPPAuto if you are not familiar with it</li><br>
+						<li>Matlab software so fairly user friendly - again for those of you who know XPPAuto :)</li><br>
+						<li>We expect a richer set of dynamics from the DDE system, as we shall see</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -798,21 +807,29 @@
 					</ul>
 
 					<aside class="notes">
-					...
+					<ul>
+						<li>Figure displays a branch of HBs for increasing inter-nodal delay</li><br>
+						<li>Red circles denote Bautin bifurcations which separate branches of sub and super critical HBs</li><br>
+						<li>The black circles denote double HBs</li><br>
+						<li>Double HBs can be indicative of chaos...</li>
+					</ul>
 					</aside>
 				</section>
 				
 				<section style="margin-top:20%">					
 					<ul>
 						<li>This type of looping structure is generic for delay systems of the form: \[\displaystyle x'(t) = f(x(t),x(t-\tau))\]</li>
-						<li>To see this note that if $x_0(t)$ is a periodic solution with delay $\tau=\tau_0$ and period $T$ then it can be shown that 
-						the same periodic solution reappears with delay \[\tau_0+lT, \quad l\in\mathbb{Z}^+\]</li>						
+						<li>To see this note that if $x_0(t)$ is a periodic solution with delay $\tau=\tau_0$ and period $T(\tau)$ then it can be shown that 
+						the same periodic solution reappears with delay \[\tau_0+lT(\tau), \quad l\in\mathbb{Z}^+\]</li>						
 						<li> See for <a href="https://journals.aps.org/pre/abstract/10.1103/PhysRevE.79.046221#:~:text=In%20particular%2C%20we%20show%20that,as%20well%20as%20unstable%20solutions.">Yanchuk and Perlikowski. Phys Rev E, 2009</a> for further details</li>
 						
 					</ul>	
 						
 					<aside class="notes">
-					...
+					<ul>
+						<li>This looping structure is generic in DDEs</li><br>
+						<li>The period T(tau) depends nontrivially on the delay tau and so branches are stretched and compressed</li>
+					</ul>
 					</aside>
 				</section>
 		
@@ -837,7 +854,12 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Focus on the first looping Structure</li><br>
+						<li>Double HBns are always accompanied by two branches of TBs - indicative of quasiperiodic and potentially a local birth of chaos</li><br>
+						<li>Whilst Bautins are accompanied by SNPO branches - which results in bistable region of parameter space</li><br>
+						<li>Torus branch meets SNPO branch meets PD branch...</li>
+					</ul>
 					</aside>
 				</section>
 		
@@ -863,7 +885,12 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Focussing now on the second looping structure...</li><br>
+						<li>We see that the structure from the first loop is repeated...</li><br>
+						<li>Numerical evidence suggests this pattern continues</li><br>
+						<li>Importantly, this increase in branch crossings leads to increased multistability and potentially much more complicated dynamics</li>
+					</ul>
 					</aside>
 				</section>			
 	
@@ -887,7 +914,12 @@
 					</div>
 			
 					<aside class="notes">
-					...
+					<ul>
+						<li>Let's look at some 1D slices</li><br>
+						<li>Slice 3: After passing the first loop we see that we have a pair of TBs (The PO loses stability here) and a pair of SNPOs</li><br>
+						<li>Towards the right we have additional SNPOs and an additional PO for a small range of rho values</li><br>
+						<li>Slice 5: For further increases in rho a pair of SNPOs collide and leading to a new separate branch leading to further multistability</li>
+					</ul>
 					</aside>
 				</section>
 			
@@ -912,7 +944,10 @@
 					<p style="color:gray">Great dynamical systems resource including codes </p>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>To check whether we see chaotic dynamics (synch) we compute the maximal LE as a function of coupling strength and inter-nodal delay</li><br>
+						<li>We do this numerically by approximating the DDE as a discrete map - for details (including codes) see the excellent website of Sprott</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -951,7 +986,9 @@
 					</div>
 					
 					<aside class="notes">
-					...
+					<br>
+						<li>This equates to approximating the next point using an Euler step and then translating all other points forward in time by one</li>
+					<br>
 					</aside>
 				</section>
 				
@@ -974,9 +1011,13 @@
 					<p style="color: gray">Solve using standard methods such as RK4</p>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>This method is slower</li><br>
+						<li>Has the benefit that can be used to solve stiff DDEs by using a stiff ODE solver </li>
+					</ul>					
 					</aside>
 				</section>
+								
 				
 				<section style="margin-top:5%" align="left">		
 					
@@ -1002,7 +1043,11 @@
 					<p class="fragment fade-in" data-fragment-index="1" style="color: gray">Interestingly the highlighted region sits between the torus bifurcation branches</p>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>We find a region of positive maximal LE bounded by the TB branches</li><br>
+						<li>For the parameter values highlighted we plot the Poincare return map of consecutive minima of the u trajectory</li><br>
+						<li>Clear evidence of a strange attractor for these parameter values</li>
+					</ul>
 					</aside>
 				</section>							
 				
@@ -1011,6 +1056,28 @@
 			
 			
 			<section>	
+			
+				<section  align="left">
+				<h3>$\epsilon$ parameter sweep of the maximum and minimum values of $u$</h3>
+				
+					<ul>
+						<li>Quasiperiodic regime dynamics for $\rho = 2.9$</li>						
+						<li>Return maps show the transition from a smooth ergodic torus to a resonant zone</li>
+					</ul>
+					<div align="center">
+					<img src="images/QuasiperiodicEpsilonSweep.png" width="500" height="auto">			
+					</div>
+					
+					<aside class="notes">
+					<ul>
+						<li>A parameter sweep of the maximum and minimum u values reveals the bifurcation structure across this region</li><br>
+						<li>PO loses stability at the first TB</li>
+						<li>Destabilsation leads to the birth of a stable 2D torus</li><br>		
+						<li>The torus is initially ergodic or at least very weakly resonant</li><br>
+						<li>Resonant zones exist as we vary epsilon e.g. a 1:5 resonance is shown here - periodic windows</li> 
+					</ul>
+					</aside>
+				</section>
 								
 				<section  align="left">
 					<h3>$\epsilon$ parameter sweep of the maximum and minimum values of $u$</h3>
@@ -1025,7 +1092,10 @@
 					</div>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Parameter sweep of the maximum and minimum u values ...</li><br>
+						<li>This time we see chaotic-like behaviour</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1038,7 +1108,7 @@
 					
 					<div align="center">
 					<img src="images/T1.png" width="300" height="auto">			
-					<img src="images/T2.png" width="300" height="auto">			
+					<img src="images/T2.png" width="325" height="auto">			
 					<img src="images/T3.png" width="300" height="auto">			
 					</div>
 					
@@ -1051,22 +1121,13 @@
 					</span>
 					
 					<aside class="notes">
-					...
-					</aside>
-				</section>
-					
-				<section  align="left">
-				<h3>$\epsilon$ parameter sweep of the maximum and minimum values of $u$</h3>
-				
 					<ul>
-						<li>Quasiperiodic regime dynamics for $\rho = 2.9$</li>
-						<li>Numerical evidence suggest chaos arise from the breakdown of a torus</li>
-						<li>Return maps show the transition from a smooth ergodic torus to a resonant zone</li>
+						<li>In the left figure the torus begins to become nonsmooth at two/three different points</li><br>
+						<li>As we increase epsilon we see that the torus starts to breakdown at these points</li><br>
+						<li>This route to chaos is well documented</br>						
 					</ul>
-					<div align="center">
-					<img src="images/QuasiperiodicEpsilonSweep.png" width="500" height="auto">			
-					</div>
-				</section>
+					</aside>
+				</section>								
 				
 			</section>
 			<!-- ################################################### -->  
@@ -1083,7 +1144,9 @@
 				</ul>
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>Read through summary</li>
+					</ul>
 				</aside>
 			</section>											
 			<!-- ################################################### -->  
@@ -1138,7 +1201,9 @@
 					</div>										
 						
 					<aside class="notes">
-					...
+					<ul>
+						<li>We perform a numerical biurcation analysis on 6 nodes and consider a more empirical approach for larger networks later on</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1165,7 +1230,10 @@
 					<p>is the basic circulant permutation matrix</p>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Due to the structure of the ring network we can write down the its characteristic equation using the Kronecker product and the basic circulant permutation matrix</li><br>
+						<li>K^{n-1} = K^T so picks out the structure of the ring network</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1193,7 +1261,9 @@
 					</ul>
 				
 					<aside class="notes">
-					...
+					<ul>
+						<li>Our matrix takes the form aK^0+bK^1+cK^{n-1} so ...</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1219,7 +1289,11 @@
 					</ul>			
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Three additional HB curves</li><br>
+						<li>For the ring we find that a new branch appears for every two nodes added to the network - we haven't looked any further into why this is the case</li><br>
+						<li>Certainly it is the case that for larger networks we observe more HB curves but this pattern is not confirmed in other networks</li>
+					</ul>
 					</aside>
 				</section>
 		
@@ -1246,7 +1320,10 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Importantly, the type of solution we obtain depends upon whether we cross the synch or asycnh Hopf curves</li><br>
+						<li>Close to the Hopf branches we see only one of two behaviours, initially at least</li>
+					</ul>
 					</aside>
 				</section>
 		
@@ -1272,7 +1349,19 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>The circle and triangle are parameter values for the asynch and synch solution shown over page</li><br>
+						<li>Here we plot the maximal LE exponent for the 6 node ring</li><br>
+						<li>We have superimposed the Hopf curves and have also added torus branches</li><br>
+						<li>Points of note:
+						<ul>
+							<li>weak chaotic borders separating synch and asynch behaviour for weak coupling</li>
+							<li>Due to torus breakdown i.e. PO loses stability at TB then ...</li>
+							<li>Complicated behaviour in the Hopf branch zone and at crossings of TB branches</li>
+							<li>Not all bifurcation curves present i.e. picture incomplete</li>
+						</ul>
+						</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1297,7 +1386,10 @@
 					</rightSide>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Regions of multistability to branch crossings</li><br>
+						<li>e.g. single IC four different solutions</li>
+					</ul>
 					</aside>
 				</section>
 	
@@ -1341,7 +1433,13 @@
 					</div>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Before moving onto larger network structures I just wanted to highlight some recent related studies</li><br>
+						<li>JTB paper was the start as my PhD student (an MRes at the time) tried to reproduce their work unsuccessfully</li><br>
+						<li>A series of papers by Campbell applied MSF to an adapted WC model - this included looking at the self coulped system</li><br>
+						<li>Clusella et al. have applied similar methods to ours to study synch in a BNM consisting of JR masses on a human brain network - 
+						there modelled does not include delays however</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1376,7 +1474,14 @@
 				<p style="color:grey">Closely connected to idea of <strong>dynamic functional connectivity</strong></p>	
 				
 				<aside class="notes">
-					...
+					<ul>
+						<li>We have observed an increasing amount of multistability for increasing inter-nodal delay and we expect this to only further 
+						heighten as we consider larger more complicated network structures</li><br>
+						<li>In a noisy system such as the brain such multistabiity manifests as metastability - which is the idea that a system can naturally switch 
+						between attractor states in response to internal and external enviromental cues</li><br>
+						<li>This idea is closely related to the concept of DFC in which one considers neural dynamics to be a traversal through the attractor 
+						landscape</li>
+					</ul>
 				</aside>
 					
 			</section>
@@ -1408,7 +1513,13 @@
 						data-src="images/AntiPhasePlusInstPhase.png">	
 						
 					<aside class="notes">
-					...
+					<ul>
+						<li>To quantify the concept of metastability we will use the Kuramoto order parameter</li><br>
+						<li>In particular we will use the variance of the order parameter as a proxy for metastability</li><br>
+						<li>A large variance in R is suggestive of a more dynamic or transitional regime</li><br>
+						<li>To compute the phase we use the Hilbert transform</li><br>						
+						<li>anti-phase solutions</li>					
+					</ul>
 					</aside>
 				</section>
 				
@@ -1418,8 +1529,10 @@
 						height="275"
 						data-src="images/PhaseLagPlusInstPhase.png">	
 					
-					<aside class="notes">
-					...
+					<aside class="notes">					
+					<ul>
+						<li>out of phase solutions</li>
+					</ul>
 					</aside>
 				</section>	
 				
@@ -1432,7 +1545,12 @@
 				</div>
 				
 				<aside class="notes">
-					...
+				<ul>
+					<li>If you are not very familiar with the Kuramoto order parameter and what it is measuring then the following tool is really nice
+					to play around with and gain some intuition</li><br>
+					<li>This is for the classic all-to-all coupled Kuramoto oscillators but we could easily set up something similar for the WC model
+					considered here</li>
+				</ul>
 				</aside>
 			</section>
 			<!-- ################################################### -->  
@@ -1449,7 +1567,14 @@
 						data-src="images/ToyNetworks.png">	
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>To start we will consider a range of toy network structures</li><br>
+						<li>We set n=16 for computational ease but similar results are obtained for larger n</li><br>
+						<li>The table has some basic network properties for each of the networks - the most important of which to point out
+						is the homogeneity of the networks</li><br>
+						<li>Explain with reference to the figures the network results</li><br>
+						<li>This contrasts significantly with most real-world networks (and certainly brain networks at the scale we consider)</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1483,7 +1608,16 @@
 					</rightSide>					
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>We start with the cycle network</li><br>
+						<li>Left: order parameter; Middle: metastability; Right: maximal LE</li><br>
+						<li>We also show the plot for 6 nodes from earlier for illustrative purposes</li><br>
+						<li>Features generally the same but more pronounced
+						<ul>
+							<li>Weak chaotic boundaries</li>
+							<li>Strong chaotic island</li>
+						</ul>						
+					</ul>
 					</aside>
 				</section>
 	
@@ -1512,7 +1646,12 @@
 					</rightSide>					
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Looking at the networks together we see that they share a number of features</li><br>
+						<li>Cycle, path and Lattice behave V similarly</li><br>
+						<li>The complete network stands out; it is highly synchronisable and the least likely to 
+						produce complicated dynamics - V little if any chaos</li>
+					</ul>
 					</aside>
 				</section>
 			
@@ -1555,7 +1694,21 @@
 					</rightSide>										
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Macaque monkey network properties:
+						<ul>
+							<li>Approximately 30% links present</li>
+							<li>High level of clustering</li>
+							<li>Over 200 times the heterogeneity score of toy networks</li>
+						</ul>
+						</li><br>
+						<li>White line is the envelope of the Hopf branches for the Macaque monkey</li><br>
+						<li>Large levels of synchrony</li><br>
+						<li>Chaotic regime</li>
+						
+						
+						
+					</ul>
 					</aside>
 				</section>
 				
@@ -1592,7 +1745,9 @@
 					</rightSide>	
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Read through slide</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1619,7 +1774,11 @@
 					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp snapshot of phase</strong></p>	
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Temporal profile unique to the Macaque network - out of tested networks</li><br>
+						<li>A snapshot of the phases shows distinct groupings of the nodes</li><br>
+						<li>Perhaps indicative of a modular FC</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1631,7 +1790,14 @@
 						<p style="color:grey"><strong>FC given by the <a href="https://www.sciencedirect.com/science/article/pii/S0167278900000877">mean phase coherence</a> of the oscillators</strong></p>
 						
 					<aside class="notes">
-					...
+					<ul>
+						<li>Here we plot a heat map of the time series for the excitatory variable u</li><br>
+						<li>An FC plot in which the (i,j) entry denotes functional connectivity between brain regions i and j - the block Structure
+						in the FC plot is evident</li><br>
+						<li>We use MPC to measure similarity between signals</li><br>
+						<li>We don't observe FC plots like this for any of the toy network structures tested</li><br>
+						<li>And a spy plot of the network structure</li>
+					</ul>
 					</aside>
 				</section>	
 				
@@ -1683,7 +1849,9 @@
 						</rightSide>								
 						
 					<aside class="notes">
-					...
+					<ul>
+						<li>Read slides...</li>
+					</ul>
 					</aside>
 				</section>
 				
@@ -1701,7 +1869,12 @@
 					</ul>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>The uncoupled system is chaotic - parameters matching Coombes and Laing</li><br>
+						<li>We find that the correct combination of coupling and inter-nodal delay can induce order confirming the results of Conti and
+						Van Gorder for a cortical network</li><br>
+						<li>Role in the brain?</li>
+					</ul>
 					</aside>
 				</section>
 			
@@ -1749,7 +1922,9 @@
 					</ul>
 					
 					<aside class="notes">
-					...
+					<ul>
+						<li>Read slides</li>
+					</ul>
 					</aside>
 				</section>
 				
